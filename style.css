@@ -79,3 +79,54 @@ th, td {
 }
 
 th { background-color: #ecf0f1; }
+
+/* Responsividade da Tabela */
+.list-section {
+    overflow-x: auto; /* Cria barra de rolagem lateral se a tela for pequena */
+}
+
+table th {
+    cursor: pointer;
+}
+
+table th:hover {
+    background-color: #2980b9;
+}
+
+/* Validação Visual de Erro */
+.input-erro {
+    border: 2px solid #e74c3c !important;
+    background-color: #fadbd8;
+}
+
+/* Modais de Confirmação e Alerta */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.modal-content button {
+    margin: 5px;
+    width: 100px;
+}
+

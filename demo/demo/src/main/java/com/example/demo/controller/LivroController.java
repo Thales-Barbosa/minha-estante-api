@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Livro;
 import com.example.demo.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,20 +22,18 @@ public class LivroController {
         return livroRepository.findAll();
     }
 
-    // CREATE (Recebe o livro do JS e salva no MySQL)
+    // CREATE (Salva um novo livro com bloqueio de duplicados)
     @PostMapping
-    public Livro salvar(@RequestBody Livro livro) {
-        return livroRepository.save(livro);
+    public ResponseEntity<?> salvar(@RequestBody Livro livro) {
+        if (livroRepository.existsByTituloIgnoreCase(livro.getTitulo())) {
+            return ResponseEntity.badRequest().body("{\"erro\": \"Um livro com este título já está cadastrado.\"}");
+        }
+        return ResponseEntity.ok(livroRepository.save(livro));
     }
 
-    // DELETE (Recebe o ID do JS e exclui do banco)
-    @DeleteMapping("/{id}")
-    public void excluir(@PathVariable Long id) {
-        livroRepository.deleteById(id);
-    }
-    // UPDATE (Recebe os dados atualizados e salva no livro existente)
+    // UPDATE (Atualiza os dados do livro, incluindo a avaliação)
     @PutMapping("/{id}")
-    public Livro atualizar(@PathVariable Long id, @RequestBody Livro livroAtualizado) {
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Livro livroAtualizado) {
         return livroRepository.findById(id)
                 .map(livro -> {
                     livro.setTitulo(livroAtualizado.getTitulo());
@@ -42,11 +41,15 @@ public class LivroController {
                     livro.setStatus(livroAtualizado.getStatus());
                     livro.setPaginas(livroAtualizado.getPaginas());
                     livro.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
-                    return livroRepository.save(livro);
+                    livro.setAvaliacao(livroAtualizado.getAvaliacao());
+                    return ResponseEntity.ok(livroRepository.save(livro));
                 })
-                .orElseGet(() -> {
-                    livroAtualizado.setId(id);
-                    return livroRepository.save(livroAtualizado);
-                });
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // DELETE (Exclui o livro pelo ID)
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        livroRepository.deleteById(id);
     }
 }

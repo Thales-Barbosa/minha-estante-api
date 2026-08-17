@@ -17,6 +17,7 @@ public class Livro {
     // Novos campos opcionais
     private Integer paginas;
     private Integer anoPublicacao;
+    private Integer avaliacao;
 
     // Getters e Setters
     public Long getId() { return id; }
@@ -36,4 +37,7 @@ public class Livro {
 
     public Integer getAnoPublicacao() { return anoPublicacao; }
     public void setAnoPublicacao(Integer anoPublicacao) { this.anoPublicacao = anoPublicacao; }
+
+    public Integer getAvaliacao() { return avaliacao; }
+    public void setAvaliacao(Integer avaliacao) { this.avaliacao = avaliacao; }
 }
