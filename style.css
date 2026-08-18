@@ -130,3 +130,69 @@ table th:hover {
     width: 100px;
 }
 
+/* Melhoria visual dos campos de formulário */
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #3498db;
+    background-color: #ffffff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+/* Estilização customizada para os seletores de número */
+input[type=number] {
+    appearance: textfield; /* Standard property for compatibility */
+    -moz-appearance: textfield; /* Remove setas no Firefox */
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1; /* Deixa as setas sempre visíveis e maiores no Chrome/Edge */
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Feedback de erro visual aprimorado */
+.input-erro {
+    border-color: #e74c3c !important;
+    background-color: #fadbd8 !important;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.3) !important;
+}
+
+.mensagem-erro-texto {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+/* Links de autenticação */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Imagem da capa na tabela */
+.capa-miniatura {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+

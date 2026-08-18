@@ -18,6 +18,7 @@ public class Livro {
     private Integer paginas;
     private Integer anoPublicacao;
     private Integer avaliacao;
+    private String urlCapa;
 
     // Getters e Setters
     public Long getId() { return id; }
@@ -40,4 +41,7 @@ public class Livro {
 
     public Integer getAvaliacao() { return avaliacao; }
     public void setAvaliacao(Integer avaliacao) { this.avaliacao = avaliacao; }
+
+    public String getUrlCapa() { return urlCapa; }
+    public void setUrlCapa(String urlCapa) { this.urlCapa = urlCapa; }
 }
